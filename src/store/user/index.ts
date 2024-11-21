@@ -34,8 +34,17 @@ const userSlice = createSlice({
         });
       }
     },
+    deleteUser: (state, action) => {
+      const existingIndex = state.users.findIndex(
+        (user: User) => user.id === action.payload
+      );
+
+      if (existingIndex !== -1) {
+        state.users.splice(existingIndex, 1);
+      }
+    },
   },
 });
 
-export const { createOrUpdate } = userSlice.actions;
+export const { createOrUpdate, deleteUser } = userSlice.actions;
 export default userSlice;

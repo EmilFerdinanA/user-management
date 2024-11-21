@@ -1,10 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
+import { deleteUser } from "../../store/user";
 
 const ListUser = () => {
   const navigate = useNavigate();
+  const dipatch = useDispatch();
   const { users } = useSelector((state: RootState) => state.user);
+
+  const handleDelete = (e) => {
+    dipatch(deleteUser(e));
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -39,12 +45,12 @@ const ListUser = () => {
                   >
                     Update
                   </Link>
-                  <a
-                    href="delete_user.html?id=1"
+                  <button
+                    onClick={() => handleDelete(user.id)}
                     className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 ml-2"
                   >
                     Delete
-                  </a>
+                  </button>
                 </td>
               </tr>
             );
