@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface User {
+  id: number;
   username: string;
   password: string;
   role: string;
@@ -19,20 +20,22 @@ const userSlice = createSlice({
     ],
   },
   reducers: {
-    create: (state, action) => {
-      const exist = state.users.find(
-        (user: User) => user.username === action.payload.username
+    createOrUpdate: (state, action) => {
+      const existingIndex = state.users.findIndex(
+        (user: User) => user.id === action.payload.id
       );
 
-      if (exist) return;
-
-      state.users.push({
-        id: state.users.length + 1,
-        ...action.payload,
-      });
+      if (existingIndex !== -1) {
+        state.users[existingIndex] = action.payload;
+      } else {
+        state.users.push({
+          id: state.users.length + 1,
+          ...action.payload,
+        });
+      }
     },
   },
 });
 
-export const { create } = userSlice.actions;
+export const { createOrUpdate } = userSlice.actions;
 export default userSlice;

@@ -1,17 +1,26 @@
-import { ChangeEvent, useState } from "react";
-import { useDispatch } from "react-redux";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { createOrUpdate } from "../../store/user";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { RootState } from "../../store";
 
-const Create = () => {
+const Update = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { users } = useSelector((state: RootState) => state.user);
+  const { id } = useParams();
 
   const [form, setForm] = useState({
+    id: 0,
     username: "",
     password: "",
     role: "admin",
   });
+
+  useEffect(() => {
+    const user = users.find((user) => user.id === +id!);
+    if (user) setForm(user);
+  }, [id, users]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -108,4 +117,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Update;

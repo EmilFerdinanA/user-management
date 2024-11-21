@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import { ProtectedRoute } from "./protectedRoute";
 import Create from "../pages/user/Create";
 import ListUser from "../pages/user/ListUser";
+import Update from "../pages/user/Update";
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
       {
         path: "create",
         element: <Create />,
+      },
+      {
+        path: "update/:id",
+        element: <Update />,
       },
     ],
   },

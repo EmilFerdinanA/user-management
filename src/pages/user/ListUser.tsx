@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
 
 const ListUser = () => {
@@ -33,12 +33,12 @@ const ListUser = () => {
                 <td className="px-6 py-4">{user.username}</td>
                 <td className="px-6 py-4">{user.role}</td>
                 <td className="px-6 py-4 text-center">
-                  <a
-                    href="update_user.html?id=1"
+                  <Link
+                    to={`update/${user.id}`}
                     className="px-4 py-2 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600"
                   >
                     Update
-                  </a>
+                  </Link>
                   <a
                     href="delete_user.html?id=1"
                     className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 ml-2"
