@@ -1,6 +1,13 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { logout } from "../store/auth";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <nav className="bg-white shadow-lg h-screen min-w-[240px] py-6 px-4 font-[sans-serif] overflow-auto">
       <ul>
@@ -22,7 +29,7 @@ const Sidebar = () => {
               Users
             </Link>
           </li>
-          <li>
+          <li onClick={handleLogout}>
             <a className="text-black hover:text-blue-600 text-[15px] block hover:bg-blue-50 rounded px-4 py-2.5 transition-all">
               Logout
             </a>

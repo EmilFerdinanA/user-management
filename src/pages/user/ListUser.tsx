@@ -8,7 +8,7 @@ const ListUser = () => {
   const dipatch = useDispatch();
   const { users } = useSelector((state: RootState) => state.user);
 
-  const handleDelete = (e) => {
+  const handleDelete = (e: number) => {
     dipatch(deleteUser(e));
   };
 
