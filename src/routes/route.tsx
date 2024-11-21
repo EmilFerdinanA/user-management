@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../pages/Root";
 import Login from "../pages/Login";
 import { ProtectedRoute } from "./protectedRoute";
+import Create from "../pages/user/Create";
+import ListUser from "../pages/user/ListUser";
 
 const routes = [
   {
@@ -15,6 +17,16 @@ const routes = [
         <Root />
       </ProtectedRoute>
     ),
+    children: [
+      {
+        index: true,
+        element: <ListUser />,
+      },
+      {
+        path: "create",
+        element: <Create />,
+      },
+    ],
   },
 ];
 

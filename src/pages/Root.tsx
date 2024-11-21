@@ -1,4 +1,4 @@
-import Content from "../components/Content";
+import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 
 const Root = () => {
@@ -6,7 +6,7 @@ const Root = () => {
     <div className="flex">
       <Sidebar />
       <div className="w-full h-screen py-8">
-        <Content />
+        <Outlet />
       </div>
     </div>
   );
